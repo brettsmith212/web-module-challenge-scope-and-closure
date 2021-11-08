@@ -70,8 +70,8 @@ Use the inning function below to do the following:
 NOTE: This will be a callback function for the tasks below
 */
 
-function inning(/*Code Here*/) {
-  /*Code Here*/
+function inning() {
+  return Math.floor(Math.random() * 3);
 }
 
 /* ⚾️⚾️⚾️ Task 3: finalScore() ⚾️⚾️⚾️
@@ -88,8 +88,16 @@ Use the finalScore function below to do the following:
 }
 */
 
-function finalScore(/*code Here*/) {
-  /*Code Here*/
+function finalScore(inningcb, inningsPlayed) {
+  let score = {
+    Home: 0,
+    Away: 0,
+  };
+  for (let i = 0; i < inningsPlayed; i++) {
+    score.Home += inningcb();
+    score.Away += inningcb();
+  }
+  return score;
 }
 
 /* ⚾️⚾️⚾️ Task 4: getInningScore() ⚾️⚾️⚾️
@@ -97,8 +105,11 @@ Use the getInningScore() function below to do the following:
   1. Receive a callback function - you will pass in the inning function from task 2 as your argument 
   2. Return an object with a score for home and a score for away that populates from invoking the inning callback function */
 
-function getInningScore(/*Your Code Here */) {
-  /*Your Code Here */
+function getInningScore(inningcb) {
+  return {
+    Home: inningcb(),
+    Away: inningcb(),
+  };
 }
 
 /* ⚾️⚾️⚾️ Task 5: scoreboard() ⚾️⚾️⚾️
@@ -142,9 +153,29 @@ Use the scoreboard function below to do the following:
 ]  
   */
 
-function scoreboard(/* CODE HERE */) {
-  /* CODE HERE */
+function scoreboard(getInningScorecb, inningcb, inningsPlayed) {
+  let log = [];
+  let awayScore = 0;
+  let homeScore = 0;
+  for (let i = 0; i < inningsPlayed; i++) {
+    log.push(
+      `Inning ${i}: Away ${getInningScorecb(inningcb).Away} - Home ${
+        getInningScorecb(inningcb).Home
+      }`
+    );
+    awayScore += getInningScorecb(inningcb).Away;
+    homeScore += getInningScorecb(inningcb).Home;
+  }
+  if (awayScore !== homeScore) {
+    log.push(`Final Score: Away ${awayScore} - Home ${homeScore}`);
+  } else if (awayScore === homeScore) {
+    log.push(
+      `This game will require extra innings: Away ${awayScore} - Home ${homeScore}`
+    );
+  }
 }
+
+console.log(scoreboard(getInningScore, inning, 9));
 
 /* 🛑🛑🛑🛑🛑 Please do not modify anything below this line 🛑🛑🛑🛑🛑 */
 function foo() {
