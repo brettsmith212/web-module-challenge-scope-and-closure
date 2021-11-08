@@ -2,24 +2,27 @@
 
 /**Example Task : processFirstItem()
  * This example shows how you might go about solving the rest of the tasks
- * 
+ *
  * Use the higher order function processFirstItem below to do the following:
  *  1. Receive an array of strings in a parameter
  *  2. Receive a callback function that takes a string as its argument in a parameter
- *  3. Return the result of invoking the callback function and passing in the FIRST 
+ *  3. Return the result of invoking the callback function and passing in the FIRST
  *     element in the array as the argument
- * 
+ *
  * The following code is demonstrating a way of completing this task
  * It returns the string `foofoo`
-*/
+ */
 
 function processFirstItem(stringList, callback) {
-  return callback(stringList[0])
+  return callback(stringList[0]);
 }
-console.log(processFirstItem(['foo','bar'],function(str){return str+str}));
+console.log(
+  processFirstItem(["foo", "bar"], function (str) {
+    return str + str;
+  })
+);
 
 // ⭐️ Example Challenge END ⭐️
-
 
 ///// M V P ///////
 
@@ -28,19 +31,25 @@ console.log(processFirstItem(['foo','bar'],function(str){return str+str}));
   Study the code for counter1 and counter2, then answer the questions below.
   
   1. What is the difference between counter1 and counter2?
+
+    counter1 uses closures to reach from counter() to counterMaker() for the count variable. counter2 looks outside the scope of the function for the count so it will always be 0 to start.
   
   2. Which of the two uses a closure? How can you tell?
+
+    counter1 uses a closure because it is referencing a variable in a higher scope that is also a function.
   
   3. In what scenario would the counter1 code be preferable? In what scenario would 
      counter2 be better?  
+
+     If you want to keep a log of the count each time the function is called, you would prefer counter1. To prefer counter2 you would need to be okay with the count resetting to 0 each time the code is run.
 */
 
 // counter1 code
 function counterMaker() {
   let count = 0;
   return function counter() {
-   return count++;
-  }
+    return count++;
+  };
 }
 
 const counter1 = counterMaker();
@@ -52,7 +61,6 @@ function counter2() {
   return count++;
 }
 
-
 /* ⚾️⚾️⚾️ Task 2: inning() ⚾️⚾️⚾️
 Use the inning function below to do the following:
   1. Return a random whole number of points between 0 and 2 scored by one team in an inning
@@ -62,10 +70,9 @@ Use the inning function below to do the following:
 NOTE: This will be a callback function for the tasks below
 */
 
-function inning(/*Code Here*/){
-    /*Code Here*/
+function inning(/*Code Here*/) {
+  /*Code Here*/
 }
-
 
 /* ⚾️⚾️⚾️ Task 3: finalScore() ⚾️⚾️⚾️
 Use the finalScore function below to do the following:
@@ -79,9 +86,9 @@ Use the finalScore function below to do the following:
   "Home": 11,
   "Away": 5
 }
-*/ 
+*/
 
-function finalScore(/*code Here*/){
+function finalScore(/*code Here*/) {
   /*Code Here*/
 }
 
@@ -93,7 +100,6 @@ Use the getInningScore() function below to do the following:
 function getInningScore(/*Your Code Here */) {
   /*Your Code Here */
 }
-
 
 /* ⚾️⚾️⚾️ Task 5: scoreboard() ⚾️⚾️⚾️
 Use the scoreboard function below to do the following:
@@ -140,13 +146,10 @@ function scoreboard(/* CODE HERE */) {
   /* CODE HERE */
 }
 
-
-
-
 /* 🛑🛑🛑🛑🛑 Please do not modify anything below this line 🛑🛑🛑🛑🛑 */
-function foo(){
-  console.log('its working');
-  return 'bar';
+function foo() {
+  console.log("its working");
+  return "bar";
 }
 foo();
 module.exports = {
@@ -158,4 +161,4 @@ module.exports = {
   finalScore,
   getInningScore,
   scoreboard,
-}
+};
