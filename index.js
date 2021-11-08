@@ -158,13 +158,11 @@ function scoreboard(getInningScorecb, inningcb, inningsPlayed) {
   let awayScore = 0;
   let homeScore = 0;
   for (let i = 0; i < inningsPlayed; i++) {
-    log.push(
-      `Inning ${i}: Away ${getInningScorecb(inningcb).Away} - Home ${
-        getInningScorecb(inningcb).Home
-      }`
-    );
-    awayScore += getInningScorecb(inningcb).Away;
-    homeScore += getInningScorecb(inningcb).Home;
+    let awayScoreTemp = getInningScorecb(inningcb).Away;
+    let homeScoreTemp = getInningScorecb(inningcb).Home;
+    log.push(`Inning ${i}: Away ${awayScoreTemp} - Home ${homeScoreTemp}`);
+    awayScore += awayScoreTemp;
+    homeScore += homeScoreTemp;
   }
   if (awayScore !== homeScore) {
     log.push(`Final Score: Away ${awayScore} - Home ${homeScore}`);
@@ -173,6 +171,7 @@ function scoreboard(getInningScorecb, inningcb, inningsPlayed) {
       `This game will require extra innings: Away ${awayScore} - Home ${homeScore}`
     );
   }
+  return log;
 }
 
 console.log(scoreboard(getInningScore, inning, 9));
